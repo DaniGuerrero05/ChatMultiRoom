@@ -1,15 +1,14 @@
 {
-  "name": "ADABlocNotas",
+  "name": "Chat",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
   "express": ">= 3.4.7",
-  "jade": ">= 0.0.1"
   },
-  "description": "Bloc de gestion de notas",
-  "main": "servidor.js",
+  "description": "Chat",
+  "main": "chatServer.js",
   "scripts": {
-    "start": "node servidor.js"
+    "start": "node chatServer.js"
   },
   "engines": {
   "node": "0.10.25",
@@ -17,15 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DaniGuerrero05/TrabajoIISS.git"
+    "url": "https://github.com/DaniGuerrero05/ChatMultiRoom"
   },
   "keywords": [
-    "adabloc"
+    "chat"
   ],
   "author": "daniel guerrero",
   "license": "private",
   "bugs": {
-    "url": "https://github.com/DaniGuerrero05/TrabajoIISS/issues"
+    "url": "https://github.com/DaniGuerrero05/ChatMultiRoom/issues"
   },
-  "homepage": "https://github.com/DaniGuerrero05/TrabajoIISS"
+  "homepage": "https://github.com/DaniGuerrero05/ChatMultiRoom"
 }
