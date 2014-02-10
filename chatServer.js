@@ -1,4 +1,6 @@
 var fs = require('fs');
+var port = process.env.PORT || 3000;
+
 function handler(req, res) {
 	"use strict";
 	fs.readFile(__dirname + '/chatClient.html', function (err, data) {
@@ -13,9 +15,9 @@ function handler(req, res) {
 var app = require('http').createServer(handler), 
    	io = require('socket.io').listen(app);
 
-app.listen(8000, function () {
+app.listen(port, function () {
 	"use strict";
-	console.log("Servidor http escuchando en el puerto 8000");
+	console.log("Servidor http escuchando");
 });
 
 io.sockets.on('connection', function (socket) {

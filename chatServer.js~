@@ -35,7 +35,7 @@ io.sockets.on('connection', function (socket) {
 		socket.get('nombre', function(err, nick) {
 			socket.leave(socket.room);
 			socket.broadcast.to(socket.room).emit('chat1', {'from': 'servidor','nick':nick,'msg':" ha dejado la sala"});
-			socket.room = nuevaSala;//bien
+			socket.room = nuevaSala;
 			socket.join(nuevaSala);		
 			socket.emit('chat2', {'from': 'servidor', 'msg': " te has unido a la sala " , 'sala':nuevaSala});
 			socket.broadcast.to(socket.room).emit('chat1', {'from': 'servidor','nick':nick, 'msg': " se ha unido a esta sala"});
