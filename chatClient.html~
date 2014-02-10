@@ -1,0 +1,67 @@
+<! doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title>Chat</title>
+		<style type="text/css">
+			body {
+				font-family: Verdana, Geneva, Arial, sans-serif;
+				font-size: small;
+				background-color: #008080;
+			}
+			h1{
+				color: #F5F5DC;	
+			}
+			#enter{
+				color: #F5F5DC;	
+			}
+		</style>
+		<script src="/socket.io/socket.io.js"></script>
+	</head>
+<body>
+	<h1>Chat IISS</h1>
+	<select name="rooms">
+		<option selected onchange="elegirSala(1)">Sala 1</option>
+		<option onchange="elegirSala(2)">Sala 2</option>
+		<option onchange="elegirSala(3)">Sala 3</option>
+	</select>
+	<form action="#" onsubmit="enviar();">
+		<label id="enter" for="mensaje">Introduzca Mensaje</label>
+		<input type="text" id="mensaje" size="40" autofocus><br>
+	</form>
+	<textarea id="salida" cols="80" rows="30">
+	</textarea>
+	
+</body>
+	<script>
+		var socket = io.connect();
+		var elm = document.getElementById("salida");
+		
+		function enviar() {
+			socket.emit('cliente', {'msg': document.getElementById('mensaje').value});
+			document.getElementById('mensaje').value = "";
+		}
+		socket.on('login', function() {
+			socket.emit('nick', prompt('Introduzca su Nick: '));
+		});		
+		function elegirSala(room){
+                	socket.emit('elegirSala', room);//room es variable k contiene el valor de la sala
+        	}
+		socket.on('message', function (data) {
+			elm.value = data + "\n" + elm.value;
+		});
+		socket.on('disconnect', function (msg) {
+			elm.value = "Conexión cerrada: " + msg + "\n" + elm.value;
+		});
+		socket.on('chat', function (data) {
+			elm.value = data.from + " dice => " + data.msg + "\n" + elm.value;
+		});
+		socket.on('chat1', function (data) {
+			elm.value = data.from + " dice => "+ data.nick + data.msg + "\n" + elm.value;
+		});
+		socket.on('chat2', function (data) {
+			elm.value = data.from + " dice => " + data.msg + data.sala +"\n" + elm.value;
+		});
+	</script>
+</html>
+
